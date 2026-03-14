@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 import IFCore
 
 struct ReportDetailView: View {
