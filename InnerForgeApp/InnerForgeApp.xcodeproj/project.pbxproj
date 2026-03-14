@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000010000000000000001 /* InnerForgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001; };
+		A10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000002; };
+		A10000010000000000000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000003; };
+		A10000010000000000000010 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000010; };
+		A10000010000000000000011 /* AISettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000011; };
+		A10000010000000000000012 /* ObservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000012; };
+		A10000010000000000000013 /* DailyEntryEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000013; };
+		A10000010000000000000014 /* ReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000014; };
+		A10000010000000000000015 /* ReportDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000015; };
+		A10000010000000000000016 /* ObservationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000016; };
+		A10000010000000000000017 /* NewObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000017; };
+		A10000010000000000000018 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000018; };
+		A10000010000000000000020 /* AISettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000020; };
+		A10000010000000000000021 /* ObservationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000021; };
+		A10000010000000000000022 /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000022; };
+		A10000010000000000000023 /* AnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000023; };
+		A1PKG0010000000000000001 /* IFCore in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000001; };
+		A1PKG0010000000000000002 /* IFStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000002; };
+		A1PKG0010000000000000003 /* IFAI in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000003; };
+		A1PKG0010000000000000004 /* IFSkillKit in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000004; };
+		A1PKG0010000000000000005 /* IFSkillBuiltin in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000005; };
+		A1PKG0010000000000000006 /* IFObservation in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000006; };
+		A1PKG0010000000000000007 /* IFAnalysis in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000007; };
+		A1PKG0010000000000000008 /* IFUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000008; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000010000000000000000 /* InnerForgeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InnerForgeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000010000000000000001 /* InnerForgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerForgeApp.swift; sourceTree = "<group>"; };
+		A20000010000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000010000000000000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A20000010000000000000004 /* InnerForgeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InnerForgeApp.entitlements; sourceTree = "<group>"; };
+		A20000010000000000000010 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		A20000010000000000000011 /* AISettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsView.swift; sourceTree = "<group>"; };
+		A20000010000000000000012 /* ObservationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListView.swift; sourceTree = "<group>"; };
+		A20000010000000000000013 /* DailyEntryEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyEntryEditorView.swift; sourceTree = "<group>"; };
+		A20000010000000000000014 /* ReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportListView.swift; sourceTree = "<group>"; };
+		A20000010000000000000015 /* ReportDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailView.swift; sourceTree = "<group>"; };
+		A20000010000000000000016 /* ObservationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationDetailView.swift; sourceTree = "<group>"; };
+		A20000010000000000000017 /* NewObservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewObservationView.swift; sourceTree = "<group>"; };
+		A20000010000000000000018 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		A20000010000000000000020 /* AISettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsViewModel.swift; sourceTree = "<group>"; };
+		A20000010000000000000021 /* ObservationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationViewModel.swift; sourceTree = "<group>"; };
+		A20000010000000000000022 /* EntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewModel.swift; sourceTree = "<group>"; };
+		A20000010000000000000023 /* AnalysisViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A40000010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1PKG0010000000000000001 /* IFCore in Frameworks */,
+				A1PKG0010000000000000002 /* IFStorage in Frameworks */,
+				A1PKG0010000000000000003 /* IFAI in Frameworks */,
+				A1PKG0010000000000000004 /* IFSkillKit in Frameworks */,
+				A1PKG0010000000000000005 /* IFSkillBuiltin in Frameworks */,
+				A1PKG0010000000000000006 /* IFObservation in Frameworks */,
+				A1PKG0010000000000000007 /* IFAnalysis in Frameworks */,
+				A1PKG0010000000000000008 /* IFUIComponents in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A50000010000000000000000 = {
+			isa = PBXGroup;
+			children = (
+				A50000010000000000000001 /* InnerForgeApp */,
+				A50000010000000000000099 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A50000010000000000000001 /* InnerForgeApp */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000001 /* InnerForgeApp.swift */,
+				A20000010000000000000002 /* ContentView.swift */,
+				A20000010000000000000004 /* InnerForgeApp.entitlements */,
+				A20000010000000000000003 /* Assets.xcassets */,
+				A50000010000000000000010 /* Views */,
+				A50000010000000000000020 /* ViewModels */,
+			);
+			path = InnerForgeApp;
+			sourceTree = "<group>";
+		};
+		A50000010000000000000010 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000010 /* SidebarView.swift */,
+				A50000010000000000000011 /* Settings */,
+				A50000010000000000000012 /* Observation */,
+				A50000010000000000000013 /* Analysis */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A50000010000000000000011 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000011 /* AISettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A50000010000000000000012 /* Observation */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000012 /* ObservationListView.swift */,
+				A20000010000000000000016 /* ObservationDetailView.swift */,
+				A20000010000000000000017 /* NewObservationView.swift */,
+				A20000010000000000000013 /* DailyEntryEditorView.swift */,
+				A20000010000000000000018 /* CalendarView.swift */,
+			);
+			path = Observation;
+			sourceTree = "<group>";
+		};
+		A50000010000000000000013 /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000014 /* ReportListView.swift */,
+				A20000010000000000000015 /* ReportDetailView.swift */,
+			);
+			path = Analysis;
+			sourceTree = "<group>";
+		};
+		A50000010000000000000020 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000020 /* AISettingsViewModel.swift */,
+				A20000010000000000000021 /* ObservationViewModel.swift */,
+				A20000010000000000000022 /* EntryViewModel.swift */,
+				A20000010000000000000023 /* AnalysisViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A50000010000000000000099 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000000 /* InnerForgeApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A60000010000000000000001 /* InnerForgeApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A80000010000000000000001 /* Build configuration list for PBXNativeTarget "InnerForgeApp" */;
+			buildPhases = (
+				A70000010000000000000001 /* Sources */,
+				A40000010000000000000001 /* Frameworks */,
+				A70000010000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InnerForgeApp;
+			packageProductDependencies = (
+				A3PKG0010000000000000001 /* IFCore */,
+				A3PKG0010000000000000002 /* IFStorage */,
+				A3PKG0010000000000000003 /* IFAI */,
+				A3PKG0010000000000000004 /* IFSkillKit */,
+				A3PKG0010000000000000005 /* IFSkillBuiltin */,
+				A3PKG0010000000000000006 /* IFObservation */,
+				A3PKG0010000000000000007 /* IFAnalysis */,
+				A3PKG0010000000000000008 /* IFUIComponents */,
+			);
+			productName = InnerForgeApp;
+			productReference = A20000010000000000000000 /* InnerForgeApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A90000010000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					A60000010000000000000001 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = A80000010000000000000002 /* Build configuration list for PBXProject "InnerForgeApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"zh-Hans",
+				Base,
+			);
+			mainGroup = A50000010000000000000000;
+			packageReferences = (
+				A3PKR0010000000000000001 /* IFCore */,
+				A3PKR0010000000000000002 /* IFStorage */,
+				A3PKR0010000000000000003 /* IFAI */,
+				A3PKR0010000000000000004 /* IFSkillKit */,
+				A3PKR0010000000000000005 /* IFSkillBuiltin */,
+				A3PKR0010000000000000006 /* IFObservation */,
+				A3PKR0010000000000000007 /* IFAnalysis */,
+				A3PKR0010000000000000008 /* IFUIComponents */,
+			);
+			productRefGroup = A50000010000000000000099 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A60000010000000000000001 /* InnerForgeApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A70000010000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000003 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A70000010000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000001 /* InnerForgeApp.swift in Sources */,
+				A10000010000000000000002 /* ContentView.swift in Sources */,
+				A10000010000000000000010 /* SidebarView.swift in Sources */,
+				A10000010000000000000011 /* AISettingsView.swift in Sources */,
+				A10000010000000000000012 /* ObservationListView.swift in Sources */,
+				A10000010000000000000013 /* DailyEntryEditorView.swift in Sources */,
+				A10000010000000000000014 /* ReportListView.swift in Sources */,
+				A10000010000000000000015 /* ReportDetailView.swift in Sources */,
+				A10000010000000000000016 /* ObservationDetailView.swift in Sources */,
+				A10000010000000000000017 /* NewObservationView.swift in Sources */,
+				A10000010000000000000018 /* CalendarView.swift in Sources */,
+				A10000010000000000000020 /* AISettingsViewModel.swift in Sources */,
+				A10000010000000000000021 /* ObservationViewModel.swift in Sources */,
+				A10000010000000000000022 /* EntryViewModel.swift in Sources */,
+				A10000010000000000000023 /* AnalysisViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A80000020000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A80000020000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A80000020000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InnerForgeApp/InnerForgeApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.innerforge.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A80000020000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InnerForgeApp/InnerForgeApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.innerforge.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A80000010000000000000002 /* Build configuration list for PBXProject "InnerForgeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000020000000000000001 /* Debug */,
+				A80000020000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A80000010000000000000001 /* Build configuration list for PBXNativeTarget "InnerForgeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000020000000000000003 /* Debug */,
+				A80000020000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A3PKR0010000000000000001 /* IFCore */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFCore;
+		};
+		A3PKR0010000000000000002 /* IFStorage */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFStorage;
+		};
+		A3PKR0010000000000000003 /* IFAI */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFAI;
+		};
+		A3PKR0010000000000000004 /* IFSkillKit */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFSkillKit;
+		};
+		A3PKR0010000000000000005 /* IFSkillBuiltin */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFSkillBuiltin;
+		};
+		A3PKR0010000000000000006 /* IFObservation */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFObservation;
+		};
+		A3PKR0010000000000000007 /* IFAnalysis */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFAnalysis;
+		};
+		A3PKR0010000000000000008 /* IFUIComponents */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Packages/IFUIComponents;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A3PKG0010000000000000001 /* IFCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFCore;
+		};
+		A3PKG0010000000000000002 /* IFStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFStorage;
+		};
+		A3PKG0010000000000000003 /* IFAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFAI;
+		};
+		A3PKG0010000000000000004 /* IFSkillKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFSkillKit;
+		};
+		A3PKG0010000000000000005 /* IFSkillBuiltin */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFSkillBuiltin;
+		};
+		A3PKG0010000000000000006 /* IFObservation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFObservation;
+		};
+		A3PKG0010000000000000007 /* IFAnalysis */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFAnalysis;
+		};
+		A3PKG0010000000000000008 /* IFUIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IFUIComponents;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+	};
+	rootObject = A90000010000000000000001 /* Project object */;
+}
