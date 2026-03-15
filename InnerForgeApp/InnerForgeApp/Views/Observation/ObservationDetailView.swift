@@ -32,6 +32,7 @@ struct ObservationDetailView: View {
                     onChanged: { entryVM.contentChanged() },
                     onSave: { entryVM.saveIfDirty() },
                     onAnalyze: { analyzeEntry(entry) },
+                    onImageAdded: { image in entryVM.addImage(image) },
                     isAnalyzing: analysisVM.isAnalyzing
                 )
             } else {
@@ -77,6 +78,22 @@ struct ObservationDetailView: View {
         } message: {
             Text("结束后将无法添加新日记，但可以生成分析报告。")
         }
+        .alert("未配置 AI 模型", isPresented: $showNoAIAlert) {
+            Button("去设置") {
+                // User navigates to settings manually
+            }
+            Button("取消", role: .cancel) {}
+        } message: {
+            Text("请先在设置中添加一个 AI 模型配置。")
+        }
+        .alert("分析出错", isPresented: .init(
+            get: { analysisVM.errorMessage != nil },
+            set: { if !$0 { analysisVM.errorMessage = nil } }
+        )) {
+            Button("确定", role: .cancel) {}
+        } message: {
+            Text(analysisVM.errorMessage ?? "")
+        }
     }
 
     private var periodHeader: some View {
@@ -111,18 +128,20 @@ struct ObservationDetailView: View {
         }
     }
 
+    @State private var showNoAIAlert = false
+
     private func analyzeEntry(_ entry: DailyEntry) {
-        guard let config = aiSettingsVM.defaultConfig else { return }
+        guard let config = aiSettingsVM.defaultConfig else { showNoAIAlert = true; return }
         analysisVM.runDailyInsight(entry: entry, config: config)
     }
 
     private func runPeriodSummary() {
-        guard let config = aiSettingsVM.defaultConfig else { return }
+        guard let config = aiSettingsVM.defaultConfig else { showNoAIAlert = true; return }
         analysisVM.runPeriodSummary(period: period, config: config)
     }
 
     private func runRestructurePlan() {
-        guard let config = aiSettingsVM.defaultConfig else { return }
+        guard let config = aiSettingsVM.defaultConfig else { showNoAIAlert = true; return }
         analysisVM.runRestructurePlan(period: period, config: config)
     }
 }

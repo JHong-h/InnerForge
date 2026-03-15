@@ -1,4 +1,6 @@
 import SwiftUI
+import AppKit
+import UniformTypeIdentifiers
 import IFCore
 import IFStorage
 
@@ -9,9 +11,11 @@ struct DailyEntryEditorView: View {
     var onChanged: () -> Void
     var onSave: () -> Void
     var onAnalyze: () -> Void
+    var onImageAdded: ((NSImage) -> Void)?
     var isAnalyzing: Bool
 
     @State private var showPreview = false
+    @State private var isDropTargeted = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -72,6 +76,33 @@ struct DailyEntryEditorView: View {
                 attachmentBar
             }
         }
+        .onDrop(of: [.image], isTargeted: $isDropTargeted) { providers in
+            handleDrop(providers)
+        }
+        .overlay {
+            if isDropTargeted {
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.accentColor, lineWidth: 3)
+                    .background(Color.accentColor.opacity(0.05))
+                    .allowsHitTesting(false)
+            }
+        }
+    }
+
+    private func handleDrop(_ providers: [NSItemProvider]) -> Bool {
+        for provider in providers {
+            if provider.canLoadObject(ofClass: NSImage.self) {
+                provider.loadObject(ofClass: NSImage.self) { object, _ in
+                    if let image = object as? NSImage {
+                        DispatchQueue.main.async {
+                            onImageAdded?(image)
+                        }
+                    }
+                }
+                return true
+            }
+        }
+        return false
     }
 
     private var editor: some View {

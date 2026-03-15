@@ -23,6 +23,8 @@
 		A10000010000000000000021 /* ObservationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000021; };
 		A10000010000000000000022 /* EntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000022; };
 		A10000010000000000000023 /* AnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000023; };
+		A10000010000000000000030 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000030; };
+		A10000010000000000000031 /* DataExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000031; };
 		A1PKG0010000000000000001 /* IFCore in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000001; };
 		A1PKG0010000000000000002 /* IFStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000002; };
 		A1PKG0010000000000000003 /* IFAI in Frameworks */ = {isa = PBXBuildFile; productRef = A3PKG0010000000000000003; };
@@ -52,6 +54,8 @@
 		A20000010000000000000021 /* ObservationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationViewModel.swift; sourceTree = "<group>"; };
 		A20000010000000000000022 /* EntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewModel.swift; sourceTree = "<group>"; };
 		A20000010000000000000023 /* AnalysisViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisViewModel.swift; sourceTree = "<group>"; };
+		A20000010000000000000030 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A20000010000000000000031 /* DataExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExporter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 				A50000010000000000000011 /* Settings */,
 				A50000010000000000000012 /* Observation */,
 				A50000010000000000000013 /* Analysis */,
+				A50000010000000000000014 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -132,6 +137,15 @@
 				A20000010000000000000015 /* ReportDetailView.swift */,
 			);
 			path = Analysis;
+			sourceTree = "<group>";
+		};
+		A50000010000000000000014 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000030 /* OnboardingView.swift */,
+				A20000010000000000000031 /* DataExporter.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		A50000010000000000000020 /* ViewModels */ = {
@@ -258,6 +272,8 @@
 				A10000010000000000000021 /* ObservationViewModel.swift in Sources */,
 				A10000010000000000000022 /* EntryViewModel.swift in Sources */,
 				A10000010000000000000023 /* AnalysisViewModel.swift in Sources */,
+				A10000010000000000000030 /* OnboardingView.swift in Sources */,
+				A10000010000000000000031 /* DataExporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

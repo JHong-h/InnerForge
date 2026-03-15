@@ -26,6 +26,15 @@ struct InnerForgeApp: App {
                 .environment(skillManager)
         }
         .modelContainer(container)
+        .commands {
+            CommandGroup(after: .importExport) {
+                Button("导出所有数据...") {
+                    let context = container.mainContext
+                    DataExporter.exportAll(context: context)
+                }
+                .keyboardShortcut("e", modifiers: [.command, .shift])
+            }
+        }
 
         Settings {
             AISettingsView()

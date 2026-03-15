@@ -4,24 +4,29 @@ import IFCore
 
 struct ContentView: View {
     @State private var selectedSection: SidebarSection? = .observations
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some View {
-        NavigationSplitView {
-            SidebarView(selection: $selectedSection)
-        } detail: {
-            switch selectedSection {
-            case .observations:
-                ObservationListView()
-            case .reports:
-                ReportListView()
-            case .settings:
-                AISettingsView()
-            case .none:
-                Text("选择一个栏目开始")
-                    .foregroundStyle(.secondary)
+        if hasCompletedOnboarding {
+            NavigationSplitView {
+                SidebarView(selection: $selectedSection)
+            } detail: {
+                switch selectedSection {
+                case .observations:
+                    ObservationListView()
+                case .reports:
+                    ReportListView()
+                case .settings:
+                    AISettingsView()
+                case .none:
+                    Text("选择一个栏目开始")
+                        .foregroundStyle(.secondary)
+                }
             }
+            .frame(minWidth: 800, minHeight: 550)
+        } else {
+            OnboardingView(isCompleted: $hasCompletedOnboarding)
         }
-        .frame(minWidth: 800, minHeight: 550)
     }
 }
 
