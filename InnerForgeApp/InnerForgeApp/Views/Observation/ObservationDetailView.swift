@@ -13,12 +13,37 @@ struct ObservationDetailView: View {
     @State private var aiSettingsVM = AISettingsViewModel()
     @State private var showEndConfirm = false
     @State private var showNoAIAlert = false
+    @State private var showCalendar = false
 
     var body: some View {
         HSplitView {
             // Left: entry list + calendar
             VStack(spacing: 0) {
                 periodHeader
+                if showCalendar {
+                    Divider()
+                    CalendarView(entries: period.entries, month: Date()) { date in
+                        if let entry = entryVM.entries.first(where: {
+                            Calendar.current.isDate($0.date, inSameDayAs: date)
+                        }) {
+                            entryVM.selectEntry(entry)
+                        }
+                    }
+                }
+                Divider()
+                HStack {
+                    Button {
+                        withAnimation { showCalendar.toggle() }
+                    } label: {
+                        Label(showCalendar ? "隐藏日历" : "显示日历", systemImage: "calendar")
+                            .font(.caption)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.secondary)
+                    Spacer()
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
                 Divider()
                 entryList
             }

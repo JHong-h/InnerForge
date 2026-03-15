@@ -38,6 +38,13 @@ struct DailyEntryEditorView: View {
                     .keyboardShortcut("s", modifiers: .command)
 
                 Button {
+                    pickImage()
+                } label: {
+                    Image(systemName: "photo.badge.plus")
+                }
+                .help("添加图片 (也可拖拽或 ⌘V 粘贴)")
+
+                Button {
                     onSave()
                     onAnalyze()
                 } label: {
@@ -85,6 +92,37 @@ struct DailyEntryEditorView: View {
                     .stroke(Color.accentColor, lineWidth: 3)
                     .background(Color.accentColor.opacity(0.05))
                     .allowsHitTesting(false)
+            }
+        }
+        .onCommand(#selector(NSResponder.paste(_:))) {
+            pasteImage()
+        }
+    }
+
+    private func pickImage() {
+        let panel = NSOpenPanel()
+        panel.allowedContentTypes = [.image]
+        panel.allowsMultipleSelection = true
+        panel.begin { response in
+            guard response == .OK else { return }
+            for url in panel.urls {
+                if let image = NSImage(contentsOf: url) {
+                    onImageAdded?(image)
+                }
+            }
+        }
+    }
+
+    private func pasteImage() {
+        let pb = NSPasteboard.general
+        guard let items = pb.pasteboardItems else { return }
+        for item in items {
+            for type in [UTType.png, UTType.jpeg, UTType.tiff] {
+                if let data = item.data(forType: .init(type.identifier)),
+                   let image = NSImage(data: data) {
+                    onImageAdded?(image)
+                    return
+                }
             }
         }
     }
