@@ -36,6 +36,18 @@ final class ObservationViewModel {
         service?.endPeriod(period)
     }
 
+    func pausePeriod(_ period: ObservationPeriod) {
+        service?.pausePeriod(period)
+    }
+
+    func resumePeriod(_ period: ObservationPeriod) {
+        service?.resumePeriod(period)
+    }
+
+    func archivePeriod(_ period: ObservationPeriod) {
+        service?.archivePeriod(period)
+    }
+
     func deletePeriod(_ period: ObservationPeriod) {
         service?.deletePeriod(period)
         periods.removeAll { $0.id == period.id }

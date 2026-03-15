@@ -76,6 +76,19 @@ struct ObservationDetailView: View {
                     Button("写今日日记", systemImage: "plus") {
                         entryVM.createTodayEntry(for: period)
                     }
+                    Button("暂停", systemImage: "pause.circle") {
+                        period.status = .paused
+                        try? modelContext.save()
+                    }
+                    Button("结束观察期", systemImage: "checkmark.circle") {
+                        showEndConfirm = true
+                    }
+                }
+                if period.status == .paused {
+                    Button("恢复", systemImage: "play.circle") {
+                        period.status = .active
+                        try? modelContext.save()
+                    }
                     Button("结束观察期", systemImage: "checkmark.circle") {
                         showEndConfirm = true
                     }

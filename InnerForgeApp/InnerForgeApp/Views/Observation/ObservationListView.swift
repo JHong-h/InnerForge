@@ -25,9 +25,18 @@ struct ObservationListView: View {
                         }
                         .contextMenu {
                             if period.status == .active {
-                                Button("结束观察期") { vm.endPeriod(period) }
+                                Button("暂停观察期", systemImage: "pause.circle") { vm.pausePeriod(period) }
+                                Button("结束观察期", systemImage: "checkmark.circle") { vm.endPeriod(period) }
                             }
-                            Button("删除", role: .destructive) { vm.deletePeriod(period) }
+                            if period.status == .paused {
+                                Button("恢复观察期", systemImage: "play.circle") { vm.resumePeriod(period) }
+                                Button("结束观察期", systemImage: "checkmark.circle") { vm.endPeriod(period) }
+                            }
+                            if period.status == .completed {
+                                Button("归档", systemImage: "archivebox") { vm.archivePeriod(period) }
+                            }
+                            Divider()
+                            Button("删除", systemImage: "trash", role: .destructive) { vm.deletePeriod(period) }
                         }
                     }
                 }
