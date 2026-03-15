@@ -27,6 +27,17 @@ struct InnerForgeApp: App {
         }
         .modelContainer(container)
         .commands {
+            CommandGroup(after: .newItem) {
+                Button("新建观察期") {
+                    NotificationCenter.default.post(name: .menuNewPeriod, object: nil)
+                }
+                .keyboardShortcut("n", modifiers: [.command, .shift])
+
+                Button("写今日日记") {
+                    NotificationCenter.default.post(name: .menuNewEntry, object: nil)
+                }
+                .keyboardShortcut("d", modifiers: [.command, .shift])
+            }
             CommandGroup(after: .importExport) {
                 Button("导出所有数据...") {
                     let context = container.mainContext
@@ -41,4 +52,9 @@ struct InnerForgeApp: App {
         }
         .modelContainer(container)
     }
+}
+
+extension Notification.Name {
+    static let menuNewPeriod = Notification.Name("menuNewPeriod")
+    static let menuNewEntry = Notification.Name("menuNewEntry")
 }

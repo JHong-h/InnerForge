@@ -52,6 +52,9 @@ struct ObservationListView: View {
             }
         }
         .onAppear { vm.load(context: modelContext) }
+        .onReceive(NotificationCenter.default.publisher(for: .menuNewPeriod)) { _ in
+            vm.isShowingNewPeriod = true
+        }
         .sheet(isPresented: $vm.isShowingNewPeriod) {
             NewObservationView(vm: vm)
         }

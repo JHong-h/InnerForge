@@ -14,6 +14,7 @@ struct ObservationDetailView: View {
     @State private var showEndConfirm = false
     @State private var showNoAIAlert = false
     @State private var showCalendar = false
+    @State private var showReportSheet = false
 
     var body: some View {
         HSplitView {
@@ -132,6 +133,22 @@ struct ObservationDetailView: View {
             Button("确定", role: .cancel) {}
         } message: {
             Text(analysisVM.errorMessage ?? "")
+        }
+        .onChange(of: analysisVM.selectedReport) { _, newReport in
+            if newReport != nil { showReportSheet = true }
+        }
+        .sheet(isPresented: $showReportSheet, onDismiss: { analysisVM.selectedReport = nil }) {
+            if let report = analysisVM.selectedReport {
+                NavigationStack {
+                    ReportDetailView(report: report)
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("关闭") { showReportSheet = false }
+                            }
+                        }
+                }
+                .frame(minWidth: 500, minHeight: 400)
+            }
         }
     }
 

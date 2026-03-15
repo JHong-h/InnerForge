@@ -2,6 +2,7 @@ import Foundation
 import SwiftData
 import AppKit
 import IFCore
+import IFStorage
 
 enum DataExporter {
     static func exportAll(context: ModelContext) {
@@ -63,6 +64,19 @@ enum DataExporter {
                 let moodLine = mood.isEmpty ? "" : "\n心情: \(entry.mood!.emoji) \(mood)\n"
                 let text = "# \(entry.date.formatted(date: .long, time: .omitted))\n\(moodLine)\n\(entry.content)\n"
                 try text.write(to: entriesDir.appendingPathComponent("\(dateStr).md"), atomically: true, encoding: .utf8)
+
+                // Copy attachments
+                if !entry.attachments.isEmpty {
+                    let attachDir = entriesDir.appendingPathComponent("\(dateStr)_附件", isDirectory: true)
+                    try FileManager.default.createDirectory(at: attachDir, withIntermediateDirectories: true)
+                    for att in entry.attachments {
+                        let srcURL = AttachmentManager.fullURL(for: att.relativePath)
+                        let dstURL = attachDir.appendingPathComponent(att.fileName ?? att.relativePath)
+                        if FileManager.default.fileExists(atPath: srcURL.path) {
+                            try FileManager.default.copyItem(at: srcURL, to: dstURL)
+                        }
+                    }
+                }
             }
         }
     }

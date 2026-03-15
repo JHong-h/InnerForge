@@ -24,6 +24,12 @@ struct ContentView: View {
                 }
             }
             .frame(minWidth: 800, minHeight: 550)
+            .onReceive(NotificationCenter.default.publisher(for: .menuNewPeriod)) { _ in
+                selectedSection = .observations
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .menuNewEntry)) { _ in
+                selectedSection = .observations
+            }
         } else {
             OnboardingView(isCompleted: $hasCompletedOnboarding)
         }
