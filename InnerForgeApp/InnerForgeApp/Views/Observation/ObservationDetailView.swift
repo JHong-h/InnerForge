@@ -12,6 +12,7 @@ struct ObservationDetailView: View {
     @State private var analysisVM = AnalysisViewModel()
     @State private var aiSettingsVM = AISettingsViewModel()
     @State private var showEndConfirm = false
+    @State private var showNoAIAlert = false
 
     var body: some View {
         HSplitView {
@@ -127,8 +128,6 @@ struct ObservationDetailView: View {
             if let entry = newValue { entryVM.selectEntry(entry) }
         }
     }
-
-    @State private var showNoAIAlert = false
 
     private func analyzeEntry(_ entry: DailyEntry) {
         guard let config = aiSettingsVM.defaultConfig else { showNoAIAlert = true; return }

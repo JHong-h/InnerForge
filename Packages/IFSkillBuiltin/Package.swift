@@ -17,7 +17,7 @@ let package = Package(
             name: "IFSkillBuiltin",
             dependencies: ["IFCore", "IFAI", "IFSkillKit"],
             path: "Sources",
-            resources: [.process("Prompts")]
+            resources: [.copy("Prompts")]
         ),
         .testTarget(name: "IFSkillBuiltinTests", dependencies: ["IFSkillBuiltin"], path: "Tests"),
     ]

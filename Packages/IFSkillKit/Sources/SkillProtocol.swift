@@ -32,7 +32,7 @@ public struct SkillOutput: Sendable {
 // MARK: - Skill Context (Sandbox)
 
 @MainActor
-public final class SkillContext {
+public final class SkillContext: Sendable {
     private let grantedPermissions: Set<SkillPermission>
     private let aiService: AIServiceProtocol?
     private let modelId: String
