@@ -1,3 +1,10 @@
+# Node
+node_modules/
+dist/
+
+# Tauri
+src-tauri/target/
+
 # Xcode
 *.xcodeproj/xcuserdata/
 *.xcworkspace/xcuserdata/
