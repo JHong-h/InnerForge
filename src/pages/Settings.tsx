@@ -17,7 +17,9 @@ export default function Settings() {
   const [testing, setTesting] = useState<string | null>(null);
   const [testResult, setTestResult] = useState<Record<string, boolean | null>>({});
   const [checking, setChecking] = useState(false);
-  const [updateStatus, setUpdateStatus] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState(false);
+  const [updateInfo, setUpdateInfo] = useState<{ has_update: boolean; version: string; download_url: string } | null>(null);
+  const [updateError, setUpdateError] = useState<string | null>(null);
 
   useEffect(() => {
     loadAiConfigs();
@@ -84,13 +86,26 @@ export default function Settings() {
 
   const handleCheckUpdate = async () => {
     setChecking(true);
-    setUpdateStatus(null);
-    // Simulate version check — in production this would fetch from a remote endpoint
-    await new Promise((r) => setTimeout(r, 1500));
-    const currentVersion = "1.0.0";
-    // Placeholder: always reports latest for now
-    setUpdateStatus("latest");
+    setUpdateInfo(null);
+    setUpdateError(null);
+    try {
+      const info = await api.checkForUpdate();
+      setUpdateInfo(info);
+    } catch (e: any) {
+      setUpdateError(String(e));
+    }
     setChecking(false);
+  };
+
+  const handleDownloadUpdate = async () => {
+    if (!updateInfo?.download_url) return;
+    setDownloading(true);
+    try {
+      await api.downloadAndInstallUpdate(updateInfo.download_url);
+    } catch (e: any) {
+      setUpdateError("下载失败: " + String(e));
+    }
+    setDownloading(false);
   };
 
   return (
@@ -238,24 +253,28 @@ export default function Settings() {
             {checking ? "检查中..." : "检查更新"}
           </button>
         </div>
-        {updateStatus && (
+        {(updateInfo || updateError) && (
           <div style={{
             marginTop: "0.75rem",
             padding: "0.6rem 0.8rem",
             borderRadius: 8,
-            background: updateStatus === "latest" ? "var(--success)" + "15" : "var(--accent)" + "15",
-            border: `1px solid ${updateStatus === "latest" ? "var(--success)" + "40" : "var(--accent)" + "40"}`,
+            background: updateError ? "var(--danger, #e53e3e)" + "15" : !updateInfo?.has_update ? "var(--success)" + "15" : "var(--accent)" + "15",
+            border: `1px solid ${updateError ? "var(--danger, #e53e3e)" + "40" : !updateInfo?.has_update ? "var(--success)" + "40" : "var(--accent)" + "40"}`,
           }}>
-            {updateStatus === "latest" ? (
+            {updateError ? (
+              <p style={{ fontSize: "0.85rem", color: "var(--danger, #e53e3e)" }}>{updateError}</p>
+            ) : !updateInfo?.has_update ? (
               <p style={{ fontSize: "0.85rem", color: "var(--success)" }}>已是最新版本</p>
             ) : (
-              <div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <p style={{ fontSize: "0.85rem", color: "var(--accent)", fontWeight: 500 }}>
-                  发现新版本 v{updateStatus}
+                  发现新版本 v{updateInfo.version}
                 </p>
-                <p style={{ fontSize: "0.8rem", color: "var(--text-secondary)", marginTop: "0.25rem" }}>
-                  请前往官方网站下载最新版本以获取新功能和修复。
-                </p>
+                {updateInfo.download_url && (
+                  <button onClick={handleDownloadUpdate} disabled={downloading} style={btnPrimary}>
+                    {downloading ? "下载中..." : "下载并安装"}
+                  </button>
+                )}
               </div>
             )}
           </div>
