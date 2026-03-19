@@ -12,7 +12,7 @@ const providers = [
 ];
 
 export default function Settings() {
-  const { aiConfigs, loadAiConfigs, theme, setTheme } = useStore();
+  const { aiConfigs, loadAiConfigs, theme, setTheme, reminderEnabled, setReminderEnabled, reminderTime, setReminderTime } = useStore();
   const [editing, setEditing] = useState<Partial<AiConfig> | null>(null);
   const [testing, setTesting] = useState<string | null>(null);
   const [testResult, setTestResult] = useState<Record<string, boolean | null>>({});
@@ -130,6 +130,37 @@ export default function Settings() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* 每日提醒 */}
+      <div style={cardStyle}>
+        <h3 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>每日提醒</h3>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+          <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer", fontSize: "0.9rem" }}>
+            <input
+              type="checkbox"
+              checked={reminderEnabled}
+              onChange={(e) => setReminderEnabled(e.target.checked)}
+              style={{ width: 16, height: 16, accentColor: "var(--accent)" }}
+            />
+            启用提醒
+          </label>
+          <input
+            type="time"
+            value={reminderTime}
+            onChange={(e) => setReminderTime(e.target.value)}
+            disabled={!reminderEnabled}
+            style={{
+              ...inputStyle,
+              width: "auto",
+              marginBottom: 0,
+              opacity: reminderEnabled ? 1 : 0.5,
+            }}
+          />
+        </div>
+        <p style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>
+          仅在有活跃观察期且当天未写日记时提醒
+        </p>
       </div>
 
       {editing && (
