@@ -11,6 +11,12 @@ import EntryEditor from "./pages/EntryEditor";
 import ReportList from "./pages/ReportList";
 import ReportDetail from "./pages/ReportDetail";
 import Settings from "./pages/Settings";
+import { useReminder } from "./hooks/useReminder";
+
+function ReminderScheduler() {
+  useReminder();
+  return null;
+}
 
 function GlobalShortcuts() {
   const navigate = useNavigate();
@@ -76,6 +82,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <GlobalShortcuts />
+      <ReminderScheduler />
       <Routes>
         {!onboarded && <Route path="*" element={<Onboarding />} />}
         <Route element={<Layout />}>

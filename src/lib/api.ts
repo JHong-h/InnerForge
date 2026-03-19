@@ -57,6 +57,13 @@ export const exportReport = (id: string, path: string) =>
   invoke<void>("export_report", { id, path });
 export const exportAll = (basePath: string) => invoke<void>("export_all", { basePath });
 
+// 提醒
+export const checkShouldRemind = () => invoke<boolean>("check_should_remind");
+
+// 更新
+export const checkForUpdate = () => invoke<{ has_update: boolean; version: string; download_url: string }>("check_for_update");
+export const downloadAndInstallUpdate = (downloadUrl: string) => invoke<void>("download_and_install_update", { downloadUrl });
+
 // Skill 记录
 export const getSkillRecords = (skillId?: string) =>
   invoke<SkillRecord[]>("get_skill_records", { skillId: skillId ?? null });

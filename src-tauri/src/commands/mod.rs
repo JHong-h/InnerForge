@@ -5,3 +5,5 @@ pub mod ai_config;
 pub mod ai_service;
 pub mod skills;
 pub mod export;
+pub mod reminder;
+pub mod updater;

@@ -22,6 +22,8 @@ interface AppState {
   aiStreamText: string;
   onboarded: boolean;
   theme: Theme;
+  reminderEnabled: boolean;
+  reminderTime: string;
 
   // Actions
   loadPeriods: () => Promise<void>;
@@ -37,6 +39,8 @@ interface AppState {
   resetAiStreamText: () => void;
   setOnboarded: (v: boolean) => void;
   setTheme: (theme: Theme) => void;
+  setReminderEnabled: (v: boolean) => void;
+  setReminderTime: (time: string) => void;
 }
 
 export const useStore = create<AppState>((set, get) => ({
@@ -52,6 +56,8 @@ export const useStore = create<AppState>((set, get) => ({
   aiStreamText: "",
   onboarded: localStorage.getItem("onboarded") === "true",
   theme: (localStorage.getItem("theme") as Theme) || "system",
+  reminderEnabled: localStorage.getItem("reminderEnabled") === "true",
+  reminderTime: localStorage.getItem("reminderTime") || "21:00",
 
   loadPeriods: async () => {
     const periods = await api.getPeriods();
@@ -94,5 +100,13 @@ export const useStore = create<AppState>((set, get) => ({
       : theme;
     document.documentElement.setAttribute("data-theme", resolved);
     set({ theme });
+  },
+  setReminderEnabled: (v) => {
+    localStorage.setItem("reminderEnabled", String(v));
+    set({ reminderEnabled: v });
+  },
+  setReminderTime: (time) => {
+    localStorage.setItem("reminderTime", time);
+    set({ reminderTime: time });
   },
 }));

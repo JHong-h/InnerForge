@@ -13,6 +13,7 @@
     "@tauri-apps/api": "^2.5.0",
     "@tauri-apps/plugin-dialog": "^2.2.2",
     "@tauri-apps/plugin-fs": "^2.2.0",
+    "@tauri-apps/plugin-notification": "^2.3.3",
     "@tauri-apps/plugin-store": "^2.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -23,9 +24,9 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.8",
+    "@tauri-apps/cli": "^2.9.6",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@tauri-apps/cli": "^2.9.6",
     "@vitejs/plugin-react": "^4.5.2",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3",

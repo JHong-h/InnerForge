@@ -10,6 +10,7 @@ pub fn run() {
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
+        .plugin(tauri_plugin_notification::init())
         .setup(|app| {
             let app_data = app.path().app_data_dir().expect("failed to get app data dir");
             std::fs::create_dir_all(&app_data).ok();
@@ -46,6 +47,9 @@ pub fn run() {
             commands::skills::get_skill_records,
             commands::export::export_report,
             commands::export::export_all,
+            commands::reminder::check_should_remind,
+            commands::updater::check_for_update,
+            commands::updater::download_and_install_update,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
