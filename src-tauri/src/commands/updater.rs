@@ -22,6 +22,14 @@ pub async fn check_for_update() -> Result<UpdateInfo, String> {
         .await
         .map_err(|e| format!("网络请求失败: {}", e))?;
 
+    if resp.status() == 404 {
+        return Ok(UpdateInfo {
+            has_update: false,
+            version: CURRENT_VERSION.into(),
+            download_url: String::new(),
+        });
+    }
+
     if !resp.status().is_success() {
         return Err("获取版本信息失败".into());
     }
