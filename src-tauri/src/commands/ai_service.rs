@@ -1,5 +1,6 @@
 use crate::db::DbState;
 use crate::models::{AiConfig, Entry, Period, Report, SkillRecord};
+use crate::commands::todos::query_completion_stats;
 use chrono::Utc;
 use futures::StreamExt;
 use reqwest::Client;
@@ -306,9 +307,15 @@ pub async fn run_period_summary(
         .join("\n");
 
     let end_date = period.actual_end_date.as_deref().unwrap_or(&period.planned_end_date);
+
+    let todo_section = {
+        let conn = db.0.lock().map_err(|e| e.to_string())?;
+        build_todo_stats_section(&conn, &period_id)?
+    };
+
     let prompt = format!(
-        "## 观察期总结\n\n请基于以下观察期的所有日记，生成一份综合总结报告...\n\n### 观察期：{}\n### 意图：{}\n### 时间范围：{} ~ {}\n\n### 日记记录\n{}\n\n请从以下角度总结：\n1. 整体情绪趋势\n2. 关键主题和模式\n3. 成长与变化\n4. 核心洞察\n5. 未来建议",
-        period.title, period.intention, period.start_date, end_date, entries_text
+        "## 观察期总结\n\n请基于以下观察期的所有日记，生成一份综合总结报告...\n\n### 观察期：{}\n### 意图：{}\n### 时间范围：{} ~ {}\n\n### 日记记录\n{}\n{}\n请从以下角度总结：\n1. 整体情绪趋势\n2. 关键主题和模式\n3. 成长与变化\n4. 核心洞察\n5. 未来建议\n6. 待办执行力与自律趋势",
+        period.title, period.intention, period.start_date, end_date, entries_text, todo_section
     );
 
     let skill_id = "period_summary";
@@ -385,9 +392,14 @@ pub async fn run_restructure_plan(
         .collect::<Vec<_>>()
         .join("\n");
 
+    let todo_section = {
+        let conn = db.0.lock().map_err(|e| e.to_string())?;
+        build_todo_stats_section(&conn, &period_id)?
+    };
+
     let prompt = format!(
-        "## 重构方案\n\n基于观察期的记录和分析，请制定一个具体的自我重构方案...\n\n### 观察期：{}\n### 意图：{}\n\n### 日记摘要\n{}\n\n请制定：\n1. 核心目标（3-5个）\n2. 具体行动计划\n3. 每日习惯建议\n4. 里程碑设定\n5. 潜在障碍及应对策略\n6. 自我评估指标",
-        period.title, period.intention, entries_summary
+        "## 重构方案\n\n基于观察期的记录和分析，请制定一个具体的自我重构方案...\n\n### 观察期：{}\n### 意图：{}\n\n### 日记摘要\n{}\n{}\n请制定：\n1. 核心目标（3-5个）\n2. 具体行动计划\n3. 每日习惯建议\n4. 里程碑设定\n5. 潜在障碍及应对策略\n6. 自我评估指标\n7. 基于待办完成情况的执行力评估与改善建议",
+        period.title, period.intention, entries_summary, todo_section
     );
 
     let skill_id = "restructure_plan";
@@ -404,4 +416,31 @@ pub async fn run_restructure_plan(
             Err(e)
         }
     }
+}
+
+fn build_todo_stats_section(conn: &rusqlite::Connection, period_id: &str) -> Result<String, String> {
+    let stats = query_completion_stats(conn, period_id)?;
+    if stats.is_empty() {
+        return Ok(String::new());
+    }
+
+    let total_w: i64 = stats.iter().map(|s| s.total_weight).sum();
+    let done_w: i64 = stats.iter().map(|s| s.completed_weight).sum();
+    let overall = if total_w > 0 { done_w as f64 / total_w as f64 } else { 0.0 };
+
+    let mut section = String::from("\n### 每日待办完成情况\n");
+    section.push_str(&format!("整体加权完成率：{:.1}%\n", overall * 100.0));
+    for s in &stats {
+        section.push_str(&format!(
+            "- {}：{:.1}%（完成权重 {}/总权重 {}，完成 {}/{} 项）\n",
+            s.date,
+            s.completion_rate * 100.0,
+            s.completed_weight,
+            s.total_weight,
+            s.completed_count,
+            s.total_count
+        ));
+    }
+    section.push('\n');
+    Ok(section)
 }

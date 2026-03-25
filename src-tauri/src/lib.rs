@@ -50,6 +50,12 @@ pub fn run() {
             commands::reminder::check_should_remind,
             commands::updater::check_for_update,
             commands::updater::download_and_install_update,
+            commands::todos::create_todo,
+            commands::todos::get_todos_by_date,
+            commands::todos::update_todo,
+            commands::todos::toggle_todo,
+            commands::todos::delete_todo,
+            commands::todos::get_period_completion_stats,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -62,3 +62,24 @@ export interface SkillRecord {
   started_at: string;
   completed_at: string | null;
 }
+
+export type TodoPriority = 'critical' | 'important' | 'secondary' | 'deferrable';
+
+export interface DailyTodo {
+  id: string;
+  period_id: string;
+  date: string;
+  title: string;
+  priority: TodoPriority;
+  completed: boolean;
+  created_at: string;
+}
+
+export interface DailyCompletionStat {
+  date: string;
+  total_count: number;
+  completed_count: number;
+  total_weight: number;
+  completed_weight: number;
+  completion_rate: number;
+}

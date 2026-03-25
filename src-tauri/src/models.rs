@@ -71,3 +71,24 @@ pub struct SkillRecord {
     pub started_at: String,
     pub completed_at: Option<String>,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DailyTodo {
+    pub id: String,
+    pub period_id: String,
+    pub date: String,
+    pub title: String,
+    pub priority: String,
+    pub completed: bool,
+    pub created_at: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DailyCompletionStat {
+    pub date: String,
+    pub total_count: i64,
+    pub completed_count: i64,
+    pub total_weight: i64,
+    pub completed_weight: i64,
+    pub completion_rate: f64,
+}

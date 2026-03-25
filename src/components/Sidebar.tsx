@@ -140,6 +140,8 @@ export default function Sidebar() {
             ))}
           </div>
         ))}
+        {/* 每日待办 */}
+        <TreeNode label="每日待办" depth={0} onClick={() => navigate("/todos")} active={isActive("/todos")} />
         {/* 分析报告 */}
         <TreeNode label="分析报告" depth={0} open={reportsOpen} onToggle={() => setReportsOpen(!reportsOpen)} hasChildren />
         {reportsOpen && Object.entries(reportTypeLabels).map(([type, label]) => {

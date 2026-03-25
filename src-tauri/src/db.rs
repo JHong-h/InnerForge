@@ -78,6 +78,17 @@ fn run_migrations(conn: &Connection) -> Result<(), Box<dyn std::error::Error>> {
             started_at TEXT NOT NULL,
             completed_at TEXT
         );
+
+        CREATE TABLE IF NOT EXISTS daily_todos (
+            id TEXT PRIMARY KEY,
+            period_id TEXT NOT NULL REFERENCES periods(id) ON DELETE CASCADE,
+            date TEXT NOT NULL,
+            title TEXT NOT NULL,
+            priority TEXT NOT NULL DEFAULT 'important',
+            completed INTEGER NOT NULL DEFAULT 0,
+            created_at TEXT NOT NULL
+        );
+        CREATE INDEX IF NOT EXISTS idx_daily_todos_period_date ON daily_todos(period_id, date);
         ",
     )?;
     Ok(())

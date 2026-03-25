@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Period, Entry, Report, AiConfig } from "./types";
+import type { Period, Entry, Report, AiConfig, DailyTodo } from "./types";
 import * as api from "./api";
 
 export type Theme = "light" | "dark" | "system";
@@ -24,6 +24,7 @@ interface AppState {
   theme: Theme;
   reminderEnabled: boolean;
   reminderTime: string;
+  todos: DailyTodo[];
 
   // Actions
   loadPeriods: () => Promise<void>;
@@ -41,6 +42,7 @@ interface AppState {
   setTheme: (theme: Theme) => void;
   setReminderEnabled: (v: boolean) => void;
   setReminderTime: (time: string) => void;
+  loadTodos: (periodId: string, date: string) => Promise<void>;
 }
 
 export const useStore = create<AppState>((set, get) => ({
@@ -58,6 +60,7 @@ export const useStore = create<AppState>((set, get) => ({
   theme: (localStorage.getItem("theme") as Theme) || "system",
   reminderEnabled: localStorage.getItem("reminderEnabled") === "true",
   reminderTime: localStorage.getItem("reminderTime") || "21:00",
+  todos: [],
 
   loadPeriods: async () => {
     const periods = await api.getPeriods();
@@ -108,5 +111,9 @@ export const useStore = create<AppState>((set, get) => ({
   setReminderTime: (time) => {
     localStorage.setItem("reminderTime", time);
     set({ reminderTime: time });
+  },
+  loadTodos: async (periodId, date) => {
+    const todos = await api.getTodosByDate(periodId, date);
+    set({ todos });
   },
 }));
