@@ -11,6 +11,7 @@ import EntryEditor from "./pages/EntryEditor";
 import ReportList from "./pages/ReportList";
 import ReportDetail from "./pages/ReportDetail";
 import Settings from "./pages/Settings";
+import TodoList from "./pages/TodoList";
 import { useReminder } from "./hooks/useReminder";
 
 function ReminderScheduler() {
@@ -91,6 +92,7 @@ export default function App() {
           <Route path="/period/:periodId/entry/:entryId" element={<EntryEditor />} />
           <Route path="/reports" element={<ReportList />} />
           <Route path="/report/:id" element={<ReportDetail />} />
+          <Route path="/todos" element={<TodoList />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>

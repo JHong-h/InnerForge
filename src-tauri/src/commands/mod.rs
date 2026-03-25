@@ -7,3 +7,4 @@ pub mod skills;
 pub mod export;
 pub mod reminder;
 pub mod updater;
+pub mod todos;

@@ -1,5 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
-import type { AiConfig, Period, Entry, Attachment, Report, SkillRecord } from "./types";
+import type { AiConfig, Period, Entry, Attachment, Report, SkillRecord, DailyTodo, DailyCompletionStat } from "./types";
 
 // AI 配置
 export const getAiConfigs = () => invoke<AiConfig[]>("get_ai_configs");
@@ -67,3 +67,17 @@ export const downloadAndInstallUpdate = (downloadUrl: string) => invoke<void>("d
 // Skill 记录
 export const getSkillRecords = (skillId?: string) =>
   invoke<SkillRecord[]>("get_skill_records", { skillId: skillId ?? null });
+
+// 每日待办
+export const createTodo = (periodId: string, date: string, title: string, priority: string) =>
+  invoke<DailyTodo>("create_todo", { periodId, date, title, priority });
+export const getTodosByDate = (periodId: string, date: string) =>
+  invoke<DailyTodo[]>("get_todos_by_date", { periodId, date });
+export const updateTodo = (id: string, title: string, priority: string) =>
+  invoke<DailyTodo>("update_todo", { id, title, priority });
+export const toggleTodo = (id: string) =>
+  invoke<DailyTodo>("toggle_todo", { id });
+export const deleteTodo = (id: string) =>
+  invoke<void>("delete_todo", { id });
+export const getPeriodCompletionStats = (periodId: string) =>
+  invoke<DailyCompletionStat[]>("get_period_completion_stats", { periodId });

@@ -5,6 +5,7 @@ import * as api from "../lib/api";
 import type { Period, Entry } from "../lib/types";
 import MoodPicker from "../components/MoodPicker";
 import MarkdownPreview from "../components/MarkdownPreview";
+import TodoSection from "../components/TodoSection";
 import { listen } from "@tauri-apps/api/event";
 import { open as openDialog } from "@tauri-apps/plugin-dialog";
 
@@ -158,6 +159,11 @@ export default function ObservationDetail() {
           </div>
         </div>
         <button onClick={handleNewEntry} style={btnPrimary}>+ 写日记</button>
+        {period?.status === 'active' && (
+          <div style={{ marginTop: "0.5rem", borderTop: "1px solid var(--border)", paddingTop: "0.5rem" }}>
+            <TodoSection periodId={id!} date={new Date().toISOString().slice(0, 10)} compact />
+          </div>
+        )}
         <div style={{ display: "flex", gap: "0.4rem", marginTop: "0.5rem" }}>
           <button onClick={() => runAi("summary")} disabled={aiLoading} style={{ ...btnSmall, flex: 1, fontSize: "0.75rem" }}>观察期总结</button>
           <button onClick={() => runAi("restructure")} disabled={aiLoading} style={{ ...btnSmall, flex: 1, fontSize: "0.75rem" }}>重构方案</button>
